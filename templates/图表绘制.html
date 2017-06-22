@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/CSS/test.css" />
+ <script src="/static/js/echarts-all.js"></script>
+ <script src="/static/js/jquery-3.1.1.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body >
+<div>
+<li onclick="drawline()">折线图</li>
+<li onclick="drawpie()">饼图</li>
+<li onclick="drawbar()">柱状图</li>
+<li onclick="drawfunnel()">漏斗图</li>
+</div>
+<div id="line" style="min-height:400px"></div>
+<div id="pie" style="min-height:400px"></div>
+<div id="bar" style="min-height:400px"></div>
+<div id="funnel" style="min-height:400px"></div>
+ <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        //var myChart = echarts.init(document.getElementById('main')); 
+        
+        
+        // 为echarts对象加载数据
+		function drawline(){
+		$.ajax({
+        url: "/getline",
+        dataType: "json",
+        json: "callback",
+        success: function (data) {
+		var myChart = echarts.init(document.getElementById('line'));
+        myChart.setOption(data);
+			}
+		})
+		}		
+   
+</script> 
+</body>
+</html>
